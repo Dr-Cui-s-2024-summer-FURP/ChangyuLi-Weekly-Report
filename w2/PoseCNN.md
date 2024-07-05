@@ -1,4 +1,6 @@
-## problems
+# problems
+
+## week 2
 
 ### 1
 
@@ -74,3 +76,52 @@ git checkout v1.2.1
 
     - issue:`E: Unable to locate package bazel-0.4.5
 E: Couldn't find any package by glob 'bazel-0.4.5'`
+
+## week 3
+
+### 1
+export TORCH_CUDA_ARCH_LIST="8.9"
+
+### 2
+
+#include <ATen/cuda/CUDAContext.h>
+#include <ATen/cuda/CUDAEvent.h>
+//#include <THC/THC.h>
+
+don't delete #include <ATen/ATen.h>
+
+### 3
+
+mkdir build
+cd build
+cmake ..
+make
+sudo make install
+
+### 4
+
+  //dim3 grid(std::min(THCCeilDiv(grad.numel(), 512L), 4096L));
+  dim3 grid(std::min(((int)grad.numel() + 512 -1) / 512, 4096));
+
+
+### 5
+error: invalid use of incomplete type ‘PyFrameObject’ {aka ‘struct _frame’}
+  need to upgrade pybind
+
+### 6
+  在 ycb_renderer.cpp 文件的顶部添加 #include <iostream> 头文件：
+
+```<CPP>
+#include <cuda_gl_interop.h>
+#include <iostream>  // 添加这一行
+```
+然后重新尝试运行 python3 setup.py develop，这个问题应该就能解决。
+
+
+### 7
+fix: np.float => np.float64
+
+
+### 8
+sudo apt-get install libassimp-dev
+pip install pipvision
